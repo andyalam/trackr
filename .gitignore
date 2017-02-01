@@ -1,0 +1,8 @@
+node_modules
+notes.md
+.env
+yarn.lock
+build/
+npm-debug.log
+uploads/
+
