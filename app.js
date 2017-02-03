@@ -5,7 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const api = require('./api/routes/index');
+require('./api/models/db');
+const api_routes = require('./api/routes/index');
 
 const app = express();
 
@@ -31,7 +32,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/api/', api);
+app.use('/api/', api_routes);
 /* GET home page. */
 app.use('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
