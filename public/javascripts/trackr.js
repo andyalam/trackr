@@ -1,7 +1,9 @@
 (function() {
 
+  var config = {
+
+  };
   var points = {};
-  window.points = points;
   // Start tracking time here
   var timeStart = new Date();
 
@@ -54,8 +56,14 @@
     $.ajax({
       type: "POST",
       url: "/api/",
-      context: data
+      data: data,
+      success: function(res) {
+        console.log(res);
+      },
+      error: function(res) {
+        console.log('err', res);
+      }
     })
-  }, 5000);
+  }, 1000);
 
 })();
