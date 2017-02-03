@@ -1,8 +1,8 @@
 (function() {
 
-  var dots = [];
-  var wHeight = window.innerHeight;
-  var wWidth = window.innerWidth;
+  var points = {};
+  window.points = points;
+  // Start tracking time here
   var timeStart = new Date();
 
   document.onmousemove = handleMouseMove;
@@ -25,9 +25,19 @@
     }
 
     var timeElapsed = new Date() - timeStart;
-    var coords = { x: event.pageX, y: event.pageY, time: timeElapsed };
-    dots.push(coords);
-    console.log(coords);
+    var wHeight = $(window).height();
+    var wWidth =$(window).width();
+
+    var point = {
+      x: event.pageX, y: event.pageY,
+      time: timeElapsed,
+    };
+    if (points[wWidth + "x" + wHeight]) {
+      points[wWidth + "x" + wHeight].push(point);
+    } else {
+      points[wWidth + "x" + wHeight] = [point];
+    }
+
 
     // Add a dot to follow the cursor
     dot = document.createElement('div');
@@ -35,8 +45,17 @@
     dot.style.left = event.pageX + "px";
     dot.style.top = event.pageY + "px";
     document.body.appendChild(dot);
-
-
   }
+
+  setTimeout(function() {
+    var data = {
+      points: points
+    }
+    $.ajax({
+      type: "POST",
+      url: "/api/",
+      context: data
+    })
+  }, 5000);
 
 })();

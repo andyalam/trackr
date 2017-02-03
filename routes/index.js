@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/api/', (req, res) => {
-  
+  console.log(req.body.data);
 });
 
 module.exports = router;
