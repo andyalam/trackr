@@ -31,9 +31,11 @@
     var wWidth =$(window).width();
 
     var point = {
-      x: event.pageX, y: event.pageY,
+      x: event.pageX,
+      y: event.pageY,
       time: timeElapsed,
     };
+
     if (points[wWidth + "x" + wHeight]) {
       points[wWidth + "x" + wHeight].push(point);
     } else {
@@ -51,12 +53,13 @@
 
   setTimeout(function() {
     var data = {
-      points: points
+      mouseData: points
     }
+    console.log('data', data);
     $.ajax({
       type: "POST",
       url: "/api/",
-      data: data,
+      data: JSON.stringify(data),
       success: function(res) {
         console.log(res);
       },
