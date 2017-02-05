@@ -53,6 +53,7 @@
 
   setTimeout(function() {
     var data = {
+      site: location.host,
       mouseData: points
     }
     console.log('data', data);
@@ -60,6 +61,7 @@
       type: "POST",
       url: "/api/",
       data: JSON.stringify(data),
+      contentType: 'application/json',
       success: function(res) {
         console.log(res);
       },

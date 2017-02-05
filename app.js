@@ -33,9 +33,9 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/', api_routes);
-/* GET home page. */
-app.use('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+/* GET tester page. */
+app.use('/test', (req, res, next) => {
+  res.render('testpage', { title: 'Express' });
 });
 
 // catch 404 and forward to error handler
